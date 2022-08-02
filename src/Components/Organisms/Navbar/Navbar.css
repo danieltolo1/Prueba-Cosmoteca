@@ -1,0 +1,9 @@
+.navbar1 {
+    background-color: rgba(0, 139, 139, 0.367) !important;
+}
+
+
+.collapse {
+    justify-content: flex-end !important;
+    flex-grow: 0 !important;
+}
