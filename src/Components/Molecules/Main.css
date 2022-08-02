@@ -36,12 +36,13 @@ html {
 
 .header {
 
-    height: 150px;
+    height: 200px;
     color: var(--secondary-color);
     box-shadow: 0 5px 10px var(--secondary-color);
     display: block;
     align-items: center;
     position: relative;
+
 }
 
 .header::before {
@@ -77,7 +78,6 @@ html {
 .row1 h1 {
     font-size: 3rem;
     text-align: center;
-
     font-family: 'Bodoni Moda', serif;
 }
 
@@ -115,6 +115,18 @@ html {
     width: 100%;
     margin: 0 auto;
     margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 0.5fr));
+    grid-gap: 20px;
+    box-sizing: border-box;
+}
+
+.mini_Container2 {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 182px;
+    margin-left: 15px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 0.5fr));
     grid-gap: 20px;
@@ -237,4 +249,47 @@ html {
     margin-top: 2rem;
     text-align: justify;
     font-size: 13px;
+}
+
+
+@media screen and (max-width:790px) {
+
+    .container_Principal {
+        display: block;
+    }
+
+    .primer_Container {
+        display: block;
+        width: 100%;
+    }
+
+    .segundo_Container {
+        width: 100%;
+    }
+
+    .mini_Container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 25px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 0.5fr));
+        grid-gap: 20px;
+        box-sizing: border-box;
+    }
+
+    .mini_Container2 {
+        display: flex;
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 182px;
+        margin-left: 15px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 0.5fr));
+        grid-gap: 20px;
+        box-sizing: border-box;
+        justify-content: center;
+    }
+
 }

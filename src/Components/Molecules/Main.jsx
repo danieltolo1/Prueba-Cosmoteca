@@ -10,23 +10,17 @@ const initialState = {
 const favoriteReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_FAVORITE":
-      const isExist = state.favorites.find(
-        (item) => item.id === action.payload.id
-      );
-      if (isExist) return { ...state };
       return {
         ...state,
         favorites: [...state.favorites, action.payload],
       };
-
-    case "REMOVE_FAVORITE":
+    case "REMOVE_TO_FAVORITE":
+      console.log(action.payload.id);
       return {
-        ...state,
         favorites: state.favorites.filter(
-          (items) => items.id !== action.payload
+          (items) => items.id !== action.payload.id
         ),
       };
-
     default:
       return state;
   }
@@ -52,18 +46,21 @@ const Main = () => {
 
   const handleClick = (favorite) => {
     dispatch({ type: "ADD_TO_FAVORITE", payload: favorite });
-    console.log("se tomo la funcion 3", favorite);
+    //console.log(favorites);
   };
 
+  const handleremove = (favorite) => {
+    dispatch({ type: "REMOVE_TO_FAVORITE", payload: favorite });
+    //console.log("remove es", favorite, favorites);
+  };
+
+  //console.log(favorites);
   return (
     <div className="container_Principal">
       <div className="primer_Container">
         <div className="header">
           <div className="row1">
-            <h1>
-              Escribe en el buscador el tema de tus libros favoritos y oprime
-              ENTER
-            </h1>
+            <h1>Escribe en el buscador el libro favorito y oprime ENTER</h1>
           </div>
           <div className="row2">
             <div className="search">
@@ -82,7 +79,7 @@ const Main = () => {
         </div>
         <div className="empaquetado">
           <div className="mini_Container">
-            {<Card book={bookData} handleClick={handleClick} />}
+            <Card book={bookData} handleClick={handleClick} />
           </div>
         </div>
       </div>
@@ -92,7 +89,9 @@ const Main = () => {
             <h1>Libros Favoritos</h1>
           </div>
 
-          <div></div>
+          <div className="mini_Container2">
+            <Card book={favorites.favorites} handleremove={handleremove} />
+          </div>
         </div>
       </div>
     </div>
