@@ -1,7 +1,8 @@
-import react, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import Card from "./Card";
 import axios from "axios";
 import "./Main.css";
+//import data1 from "../../data";
 
 const initialState = {
   favorites: [],
@@ -15,7 +16,7 @@ const favoriteReducer = (state, action) => {
         favorites: [...state.favorites, action.payload],
       };
     case "REMOVE_TO_FAVORITE":
-      console.log(action.payload.id);
+      // console.log(action.payload.id);
       return {
         favorites: state.favorites.filter(
           (items) => items.id !== action.payload.id
@@ -32,11 +33,12 @@ const Main = () => {
   const [bookData, setData] = useState([]);
   const searchBook = (evt) => {
     if (evt.key === "Enter") {
+      // setData(data1);
       axios
         .get(
           "https://www.googleapis.com/books/v1/volumes?q=" +
             search +
-            "&key=AIzaSyA6SaT23KNiiA6DnUfUQTvFeyAcQEkwnSU" +
+            "&key=AIzaSyBt7ZPSoIeIMAnbWhQJThkY7cW7AICR08g" +
             "&maxResults=40"
         )
         .then((res) => setData(res.data.items))
@@ -46,13 +48,43 @@ const Main = () => {
 
   const handleClick = (favorite) => {
     dispatch({ type: "ADD_TO_FAVORITE", payload: favorite });
+
     //console.log(favorites);
   };
 
   const handleremove = (favorite) => {
     dispatch({ type: "REMOVE_TO_FAVORITE", payload: favorite });
+
     //console.log("remove es", favorite, favorites);
   };
+
+  const compareArrays = () => {
+    const variable3 = [
+      ...bookData.filter((p) => !favorites.favorites.includes(p)),
+    ];
+    //console.log("variable3", variable3);
+    return variable3;
+
+    // favorites.favorites.forEach((e) => {
+    //   const variable = bookData.includes(e);
+
+    //   let indice;
+    //   if (variable) indice = bookData.indexOf(e);
+    //   console.log("este es undice", indice);
+    //   bookData.splice(indice, 1);
+    //   console.log("nuevo bookdata", bookData);
+    // if (variable) console.log("elemento", e);
+    // const variable2 = bookData.filter((a) => {
+    //   bookData.includes(e);
+    // });
+    // });
+  };
+
+  useEffect(() => {
+    setData(compareArrays());
+  }, [favorites]);
+
+  //console.log(bookData, "este es book data");
 
   //console.log(favorites);
   return (

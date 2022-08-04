@@ -143,6 +143,8 @@ html {
     transition: .5s;
     text-align: center;
     position: relative;
+    max-width: 250px;
+
 }
 
 .card:hover {

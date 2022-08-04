@@ -1,4 +1,4 @@
-import react, { useState, useReducer } from "react";
+import React, { useState, useReducer } from "react";
 
 const Card = ({ book, handleClick, handleremove }) => {
   return (
